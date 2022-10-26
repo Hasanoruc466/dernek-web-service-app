@@ -1,0 +1,39 @@
+<div class="d-flex">
+    <div class="container">
+        <div style="width: 50%;">
+            <h3>Haber Ekleme</h3>
+            <form #addHaber="ngForm" (ngSubmit)="onHaberCreate(addHaber.value)">
+                <label >Konu</label>
+                <input type="text" name="konu" ngModel>
+    
+                <label >İçerik</label>
+                <input type="text" name="icerik" ngModel>
+    
+                <label >Geçerlilik Tarihi</label>
+                <input type="text" name="gecerlilikTarihi" ngModel>
+
+                <label >Haber Kaynağı (URL)</label>
+                <input type="text" name="haberUrl" ngModel>
+    
+                <input type="submit" value="Haber Ekle">
+            </form>
+        </div>
+    </div>
+    <div style="width: 50%;" >
+        <h2>Duyurular</h2>
+        <div style="margin-top: 10px;" *ngFor="let haber of haberler">
+            <h3 >
+                <b>{{haber.konu}}</b>
+            </h3> 
+            <p>{{haber.icerik}}</p>
+            <p><a href="{{haber.haberUrl}}">Haberin Devamı</a></p>
+            <p>{{haber.gecerlilikTarihi}}</p>
+            <button class="btn btn-danger btn-sm" style="margin-right: 10px;" (click)="onDelete(haber.id)">Sil</button>
+            <button class="btn btn-warning btn-sm" (click)="onUpdate(haber)">Güncelle</button>
+        </div>
+        
+        
+    </div>
+    
+</div>
+

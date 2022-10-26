@@ -4,11 +4,13 @@ import com.example.dernek.models.Duyuru;
 import com.example.dernek.service.DuyuruService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/duyurular")
 public class DuyuruResources {
     private final DuyuruService duyuruService;
@@ -35,9 +37,9 @@ public class DuyuruResources {
         return new ResponseEntity<>(newDuyuru, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Duyuru> updateDuyuru(@RequestBody Duyuru duyuru){
-        Duyuru update = duyuruService.updateDuyuru(duyuru);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Duyuru> updateDuyuru(@PathVariable("id") Long id, @RequestBody Duyuru duyuru){
+        Duyuru update = duyuruService.updateDuyuru(id, duyuru);
         return new ResponseEntity<>(update, HttpStatus.OK);
     }
 

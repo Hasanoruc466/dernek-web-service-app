@@ -28,15 +28,20 @@ public class DuyuruService {
         return duyuruRepo.findAll();
     }
 
-    public Duyuru updateDuyuru(Duyuru duyuru){
-        return duyuruRepo.save(duyuru);
-    }
-
     public Duyuru findDuyuruById(Long id){
         return duyuruRepo.findDuyuruById(id)
                 .orElseThrow(() -> new EtkinlikBulunamadiHatasi("Duyuru bulunamadi..."));
     }
 
+
+    public Duyuru updateDuyuru(Long id, Duyuru duyuru){
+    	Duyuru updateDuyurus = findDuyuruById(id);
+    	updateDuyurus.setKonu(duyuru.getKonu());
+    	updateDuyurus.setIcerik(duyuru.getIcerik());
+    	updateDuyurus.setGecerlilikTarihi(duyuru.getGecerlilikTarihi());
+    	updateDuyurus.setResim(duyuru.getResim());
+        return duyuruRepo.save(updateDuyurus);
+    }
     public void deleteDuyuru(Long id){
         duyuruRepo.deleteDuyuruById(id);
     }

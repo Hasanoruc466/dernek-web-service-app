@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/haberler")
 public class HaberlerResources {
     private final HaberlerService haberlerService;
@@ -35,9 +36,9 @@ public class HaberlerResources {
         return new ResponseEntity<>(habers, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Haberler> updateHaber(@RequestBody Haberler haber){
-        Haberler update = haberlerService.updateHaber(haber);
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Haberler> updateHaber(@PathVariable("id") Long id, @RequestBody Haberler haber){
+        Haberler update = haberlerService.updateHaber(id, haber);
         return new ResponseEntity<>(update, HttpStatus.OK);
     }
 

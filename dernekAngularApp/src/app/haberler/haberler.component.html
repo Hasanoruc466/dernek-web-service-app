@@ -1,0 +1,7 @@
+<div *ngFor="let haber of haberler">
+    <h3 >
+        <b>{{haber.konu}}</b>
+    </h3>
+    <p>{{haber.icerik}}<button class="btn btn-small btn-light" mat-button (click)="detay(haber.id)">Detay</button></p>
+    
+</div>

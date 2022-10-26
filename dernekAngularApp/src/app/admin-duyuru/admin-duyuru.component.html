@@ -1,0 +1,34 @@
+<div class="d-flex">
+    <div class="container">
+        <div style="width: 50%;">
+            <h3>Duyuru Ekleme</h3>
+            <form #addDuyuru="ngForm" (ngSubmit)="onDuyuruCreate(addDuyuru.value)">
+                <label >Konu</label>
+                <input type="text" name="konu" ngModel>
+    
+                <label >İçerik</label>
+                <input type="text" name="icerik" ngModel>
+    
+                <label >Geçerlilik Tarihi</label>
+                <input type="text" name="gecerlilikTarihi" ngModel>
+    
+                <input type="submit" value="Duyuru Ekle">
+            </form>
+        </div>
+    </div>
+    <div style="width: 50%;" >
+        <h2>Duyurular</h2>
+        <div style="margin-top: 10px;" *ngFor="let duyuru of duyurular">
+            <h3 >
+                <b>{{duyuru.konu}}</b>
+            </h3> 
+            <p>{{duyuru.icerik}}</p>
+            <p>{{duyuru.gecerlilikTarihi}}</p>
+            <button class="btn btn-danger btn-sm" style="margin-right: 10px;" (click)="onDelete(duyuru.id)">Sil</button>
+            <button class="btn btn-warning btn-sm" (click)="onUpdate(duyuru)">Güncelle</button>
+        </div>
+        
+        
+    </div>
+    
+</div>

@@ -1,0 +1,26 @@
+<h1 mat-dialog-title>Güncelle</h1>
+<div mat-dialog-content>
+    <div style="margin-bottom: 20px;">
+        <mat-form-field appearance="fill">
+            <div><label >Konu</label></div>
+            <input matInput [(ngModel)]="data.konu" value="{{data.konu}}">
+          </mat-form-field>
+    </div>
+  <div style="margin-bottom: 20px;">
+    <mat-form-field appearance="fill">
+        <div><label>İçerik</label></div>
+        <input matInput [(ngModel)]="data.icerik" value="{{data.icerik}}">
+      </mat-form-field>
+  </div>
+  <div style="margin-bottom: 20px;">
+    <mat-form-field appearance="fill">
+        <div><label>Geçerlilik Tarihi</label></div>
+        <input matInput [(ngModel)]="data.gecerlilikTarihi" value="{{data.gecerlilikTarihi}}">
+      </mat-form-field>
+  </div>
+  
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-danger btn-sm" style="margin-right: 10px;" mat-button (click)="onNoClick()">İptal Et</button>
+  <button class="btn btn-warning btn-sm" mat-button [mat-dialog-close]="data" cdkFocusInitial>Güncelle</button>
+</div>

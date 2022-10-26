@@ -28,13 +28,18 @@ public class HaberlerService {
         return haberlerRepo.findAll();
     }
 
-    public Haberler updateHaber(Haberler haberler){
-        return  haberlerRepo.save(haberler);
-    }
-
     public Haberler findHaberById(Long id){
         return  haberlerRepo.findHaberById(id)
                 .orElseThrow(() -> new EtkinlikBulunamadiHatasi("Haber bulunamadı..."));
+    }
+
+    public Haberler updateHaber(Long id, Haberler haberler){
+    	Haberler updateHabers = findHaberById(id);
+    	updateHabers.setKonu(haberler.getKonu());
+    	updateHabers.setIcerik(haberler.getIcerik());
+    	updateHabers.setGecerlilikTarihi(haberler.getGecerlilikTarihi());
+    	updateHabers.setHaberUrl(haberler.getHaberUrl());
+        return  haberlerRepo.save(updateHabers);
     }
 
     public void deleteHaber(Long id){
